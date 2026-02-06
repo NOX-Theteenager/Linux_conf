@@ -1,0 +1,52 @@
+[
+  {
+    "id": "vscode",
+    "name": "Visual Studio Code",
+    "default": "off",
+    "cmd_debian": "snap install code --classic",
+    "cmd_fedora": "rpm --import https://packages.microsoft.com/keys/microsoft.asc && dnf install -y code",
+    "cmd_arch": "pacman -S --noconfirm code"
+  },
+  {
+    "id": "chrome",
+    "name": "Google Chrome",
+    "default": "off",
+    "cmd_debian": "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt install ./google-chrome-stable_current_amd64.deb -y",
+    "cmd_fedora": "dnf install -y google-chrome-stable",
+    "cmd_arch": "yay -S google-chrome"
+  },
+  {
+    "id": "vbox",
+    "name": "VirtualBox (Virtualisation)",
+    "default": "off",
+    "cmd_debian": "apt install -y virtualbox virtualbox-ext-pack",
+    "cmd_fedora": "dnf install -y VirtualBox",
+    "cmd_arch": "pacman -S --noconfirm virtualbox virtualbox-host-modules-arch"
+  },
+  {
+    "id": "vmware",
+    "name": "VMWare Workstation (Dépendances)",
+    "default": "off",
+    "cmd_debian": "apt install -y build-essential linux-headers-$(uname -r) gcc make",
+    "cmd_fedora": "dnf install -y kernel-devel kernel-headers gcc make",
+    "cmd_arch": "pacman -S --noconfirm base-devel linux-headers"
+  },
+  {
+    "id": "nmap",
+    "name": "Nmap (Sécurité Réseau)",
+    "default": "off",
+    "cmd_all": "apt-get install -y nmap || dnf install -y nmap || pacman -S --noconfirm nmap"
+  },
+  {
+    "id": "flutter",
+    "name": "Flutter SDK",
+    "default": "off",
+    "cmd_all": "snap install flutter --classic"
+  },
+  {
+    "id": "antigravity",
+    "name": "Google Antigravity (Python Easter Egg)",
+    "default": "off",
+    "cmd_all": "python3 -m antigravity"
+  }
+]
