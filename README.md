@@ -1,46 +1,39 @@
-# 🚀 Auto-Debloat & Post-Install Script (Linux)
+# Application de Gestion de Parc Informatique - NETSEC-CAM SARL
 
-Ce projet est un outil d'automatisation **"Tout-en-un"** destiné aux développeurs et administrateurs système sur Linux. Il permet de configurer une machine fraîchement installée en quelques minutes via une interface graphique terminal (TUI) interactive et élégante.
+## Description
+Cette application est un outil d'administration système développé en Bash avec une interface graphique Zenity. Elle permet de gérer les officiers IT, les utilisateurs système, les groupes, les processus, les services et les cartes réseau.
 
-Compatible avec : **Ubuntu, Debian, Fedora, Arch Linux, Manjaro, Pop!_OS**.
+## Prérequis
+- Système Linux (Ubuntu/Debian recommandé)
+- Zenity installé (`sudo apt install zenity`)
+- Droits administrateur (sudo)
 
-## ✨ Fonctionnalités Principales
+## Installation et Lancement
+1. Extraire l'archive `gestion_parc.zip`.
+2. Donner les permissions d'exécution (déjà fait dans l'archive, mais au cas où) :
+   ```bash
+   chmod -R +x gestion_parc/
+   ```
+3. Lancer l'application :
+   ```bash
+   sudo ./gestion_parc/main.sh
+   ```
 
-### 🛠️ 1. Setup de Base Intelligent
-- Mise à jour complète du système.
-- Installation des indispensables : `git`, `docker`, `docker-compose`, `gh` (GitHub CLI), `curl`.
-- **Smart Check** : Détecte si Git et Docker sont déjà configurés pour ne pas redemander vos identifiants inutilement.
-- Configuration automatique des groupes Docker (plus besoin de `sudo`).
+## Identifiants par défaut
+- **Utilisateur** : `admin`
+- **Mot de passe** : `admin123`
 
-### 📦 2. Gestion Logiciels & Stores
-- **Stores Alternatifs** : Installation en un clic de **Snap Store**, **Flathub**, et **Bauh** (gestionnaire universel).
-- **Catalogue Modifiable** : Installation de logiciels définis dans `software.json` (VS Code, Chrome, Flutter, VirtualBox, VMWare deps, etc.).
-- Gestion automatique des commandes d'installation selon votre distribution (`apt`, `dnf`, `pacman`).
+## Architecture
+- `main.sh` : Point d'entrée, vérifie les droits root.
+- `login.sh` : Module d'authentification sécurisé.
+- `menu_principal.sh` : Navigation entre les modules.
+- `officiers/` : Gestion des accès à l'application.
+- `utilisateurs/` & `groupes/` : Administration système.
+- `systeme/` : Monitoring et gestion des services, processus, cartes réseau, stores/sources alternatifs et pare-feu SECURENET.
+- `data/` : Stockage des configurations.
+- `logs/` : Journalisation de toutes les actions.
 
-### 🎨 3. Personnalisation & UI
-- **Nerd Fonts** : Téléchargement et installation automatique de **JetBrains Mono** et **FiraCode** (indispensable pour les terminaux modernes type Starship/P10k).
-- **Thèmes & Icônes** : Copie automatique de vos dossiers `.themes` et `.icons`.
-- **Extensions GNOME** : Installation automatique d'extensions via `gnome-extensions-cli` (contourne les restrictions navigateur).
-
-### 🧹 4. Debloat & Maintenance
-- **Nettoyage Profond** : Suppression des orphelins, cache paquets et **vieux Kernels Linux**.
-- **Anti-Télémétrie** : Désactivation des services de tracking (Whoopsie, Apport, GNOME report).
-- **Flatpak Cleaner** : Suppression des runtimes inutilisés.
-
-### 🛡️ 5. Sécurité & Backup
-- **Health Check** : Vérification de l'espace disque et d'Internet avant lancement.
-- **SSH Cloud Upload** : Envoi automatique de votre clé publique vers **GitHub** ou **GitLab**.
-- **Backup/Restore** : Sauvegarde et restauration complète de la configuration de bureau GNOME (`dconf`).
-
----
-
-## 📂 Structure du Projet
-
-```text
-.
-├── setup.sh          # Le script principal (Lancez-moi !)
-├── software.json        # Liste configurable de vos logiciels
-├── my_extensions.txt    # Liste des IDs d'extensions GNOME
-├── README.md            # Ce fichier
-├── .themes/             # (Optionnel) Vos thèmes GTK
-└── .icons/              # (Optionnel) Vos packs d'icônes
+## Sécurité
+- Accès restreint par mot de passe.
+- Journalisation horodatée de chaque action sensible.
+- Vérification des privilèges root à l'exécution.
